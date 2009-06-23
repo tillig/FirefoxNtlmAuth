@@ -1,0 +1,3 @@
+content ntlmauth chrome/content/
+overlay chrome://browser/content/browser.xul chrome://ntlmauth/content/tools-menu.xul
+locale ntlmauth en-US chrome/locale/en-US/

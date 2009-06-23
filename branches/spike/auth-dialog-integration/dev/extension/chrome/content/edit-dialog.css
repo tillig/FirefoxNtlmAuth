@@ -1,0 +1,29 @@
+window
+{
+	padding: 14px;
+	width: 378px;
+	height: 320px;
+}
+
+#addSite
+{
+	margin-bottom: 10px;
+}
+
+#dialogButtons
+{
+	margin-top: 30px;
+}
+
+#instructions
+{
+	margin-bottom: 20px;
+	vertical-align: middle;
+}
+
+#lock-icon
+{
+	list-style-image: url("chrome://ntlmauth/content/lock.png");
+	width: 48px;
+	height: 48px;
+}
