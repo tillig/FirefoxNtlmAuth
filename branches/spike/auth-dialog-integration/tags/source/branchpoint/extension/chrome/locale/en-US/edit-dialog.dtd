@@ -1,0 +1,10 @@
+<!ENTITY addbutton.accesskey "A">
+<!ENTITY addbutton.text "Add">
+<!ENTITY addsitelabel.text "Allow NTLM authentication on this site:">
+<!ENTITY closebutton.accesskey "C">
+<!ENTITY closebutton.text "Close">
+<!ENTITY instructions.text "You can add and remove sites from the list of NTLM-enabled sites. All web sites listed will use NTLM authentication if available.">
+<!ENTITY removebutton.accesskey "R">
+<!ENTITY removebutton.text "Remove">
+<!ENTITY sitelistlabel.text "NTLM-enabled sites:">
+<!ENTITY window.title "NTLM Authentication">
