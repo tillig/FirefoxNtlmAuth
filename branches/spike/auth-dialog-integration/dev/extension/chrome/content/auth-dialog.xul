@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay SYSTEM "chrome://ntlmauth/locale/auth-dialog.dtd">
+<overlay id="ntlmauth-auth-dialog" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/x-javascript" src="chrome://ntlmauth/content/common.js"/>
+	<script type="application/x-javascript" src="chrome://ntlmauth/content/auth-dialog.js"/>
+	<commandset id="ntlmAuthDialogCommandSet">
+		<command id="cmd_useNtlmAuth" oncommand="com.paraesthesia.ntlmauth.AuthDialog.useNtlmAuth()"/>
+	</commandset>
+</overlay>

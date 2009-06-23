@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<overlay id="ntlmauth-common-script" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/x-javascript" src="chrome://ntlmauth/content/common.js"/>
+	<script type="application/x-javascript" src="chrome://ntlmauth/content/browser-script.js"/>
+</overlay>
