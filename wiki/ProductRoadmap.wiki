@@ -1,0 +1,26 @@
+#summary Major features and milestones we'd like to accomplish.
+#labels Phase-Requirements
+
+= Introduction =
+
+This is a pretty simple add-on, but I'm kinda new to Firefox add-ons so it's good to have a plan. There are basically three pieces that need to get done.
+
+= For First Release =
+
+== Installer ==
+
+I need to add a build script that will compile the add-on into the .xpi file for download as noted [https://developer.mozilla.org/en/Extension_Packaging on the Mozilla site]. This will probably be in MSBuild since that's the build script language I've been using for other projects.
+
+Once that's packaged, I need to get an account on the [https://addons.mozilla.org Firefox add-ons site] and upload it so people can find it. I think that's how the official distribution will work rather than downloads right from here just because that way I can control the update process and such.
+
+== Site List Management ==
+
+I have a dialog that lets you manage the list of NTLM-enabled sites, but I need to do some extensive testing. There's some weird stuff right now like if the list of sites is empty you can still select an empty row and say "Delete this site from the list" which doesn't make sense.
+
+= Next/Later Release =
+
+== Integration with Auth Dialog ==
+
+I want to integrate with the authentication dialog so when you access an NTLM-enabled site and the username/password dialog pops up, an additional button will appear that says "Use NTLM Auth" or something.
+
+This is going to require figuring out [https://developer.mozilla.org/en/How_to_Build_an_XPCOM_Component_in_Javascript how to write XPCOM in JavaScript] because I need to have a window event watcher that catches the dialog popping up and also checks the corresponding request to see if it's NTLM-aware.
