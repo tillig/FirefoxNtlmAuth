@@ -9,9 +9,9 @@ This is a pretty simple add-on, but I'm kinda new to Firefox add-ons so it's goo
 
 == Installer ==
 
-I need to add a build script that will compile the add-on into the .xpi file for download as noted [https://developer.mozilla.org/en/Extension_Packaging on the Mozilla site]. This will probably be in MSBuild since that's the build script language I've been using for other projects.
+I have a build script that will compile the add-on into the .xpi file for download as noted [https://developer.mozilla.org/en/Extension_Packaging on the Mozilla site].
 
-Once that's packaged, I need to get an account on the [https://addons.mozilla.org Firefox add-ons site] and upload it so people can find it. I think that's how the official distribution will work rather than downloads right from here just because that way I can control the update process and such.
+I need to get an account on the [https://addons.mozilla.org Firefox add-ons site] and upload it so people can find it. I think that's how the official distribution will work rather than downloads right from here just because that way I can control the update process and such.
 
 == Site List Management ==
 
