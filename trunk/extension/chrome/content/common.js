@@ -60,15 +60,19 @@ if (!com.paraesthesia.ntlmauth.Preferences) com.paraesthesia.ntlmauth.Preference
 
 	loadSiteList: function() {
 		var prefString = this.preferenceService.getCharPref(this.preferenceKey);
-		var prefArray = new Array();
+		var trimmedArray = new Array();
 		if (prefString != null && prefString.length > 0) {
+			var prefArray = new Array();
 			prefArray = prefString.split(",");
 			for (var i = 0; i < prefArray.length; i++) {
-				prefArray[i] = com.paraesthesia.ntlmauth.String.trim(prefArray[i]);
+				var url = com.paraesthesia.ntlmauth.String.trim(prefArray[i]);
+				if (url != null && url.length > 0) {
+					trimmedArray.push(url);
+				}
 			}
-			prefArray.sort(com.paraesthesia.ntlmauth.String.urlSort);
+			trimmedArray.sort(com.paraesthesia.ntlmauth.String.urlSort);
 		}
-		return prefArray;
+		return trimmedArray;
 	},
 
 	saveSiteList: function(siteList) {
