@@ -33,7 +33,7 @@
 			<label control="siteListBox">&sitelistlabel.text;</label>
 			<hbox>
 				<vbox flex="1">
-					<listbox id="siteListBox" rows="6" flex="1" onselect="com.paraesthesia.ntlmauth.EditDialog.DialogController.updateRemoveButtonDisabled(this);" />
+					<listbox id="siteListBox" rows="6" flex="1" onselect="com.paraesthesia.ntlmauth.EditDialog.DialogController.updateFormFromSelection(this);" />
 				</vbox>
 				<vbox>
 					<button id="removeButton" label="&removebutton.text;" accesskey="&removebutton.accesskey;" disabled="true" command="cmd_removeSite"/>
