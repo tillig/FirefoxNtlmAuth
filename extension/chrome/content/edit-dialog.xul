@@ -28,7 +28,7 @@
 		<vbox id="addSite">
 			<label control="addSiteTextBox">&addsitelabel.text;</label>
 			<hbox>
-				<textbox id="addSiteTextBox" maxlength="2048" flex="1" oninput="com.paraesthesia.ntlmauth.EditDialog.DialogController.updateAddButtonDisabled(this);"/>
+				<textbox id="addSiteTextBox" maxlength="2048" flex="1" oninput="com.paraesthesia.ntlmauth.EditDialog.DialogController.onAddTextboxChanged(this);" onkeyup="com.paraesthesia.ntlmauth.EditDialog.DialogController.onAddTextboxKeyUp(event);"/>
 				<button id="addButton" label="&addbutton.text;" accesskey="&addbutton.accesskey;" command="cmd_addSite"/>
 			</hbox>
 			<label control="addSiteAddlHelp">&addsitehelplabel.text;</label>
