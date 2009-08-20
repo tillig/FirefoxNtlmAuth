@@ -69,6 +69,7 @@ if (!com.paraesthesia.ntlmauth.EditDialog.DialogController) com.paraesthesia.ntl
 		this.removeButton = document.getElementById("removeButton");
 		this.siteListBox = document.getElementById("siteListBox");
 
+		this.addSiteTextBox.focus();
 		this.populateSiteList();
 		// TODO: Put the current web site in the textbox IF it's not already in the list.
 		this.updateAddButtonDisabled(this.addSiteTextBox);
