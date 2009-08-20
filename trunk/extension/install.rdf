@@ -17,5 +17,6 @@
 		<em:description>An extension that helps with enabling and managing NTLM (Windows pass-through) authentication.</em:description>
 		<em:creator>Travis Illig</em:creator>
 		<em:homepageURL>http://firefox-ntlmauth.googlecode.com/</em:homepageURL>
+		<em:iconURL>chrome://ntlmauth/content/firefox-ntlmauth.png</em:iconURL>
 	</Description>
 </RDF>
