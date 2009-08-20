@@ -76,11 +76,20 @@ if (!com.paraesthesia.ntlmauth.EditDialog.DialogController) com.paraesthesia.ntl
 
 	},
 
+	onAddTextboxChanged: function(textbox) {
+		this.updateAddButtonDisabled(textbox);
+	},
+
+	onAddTextboxKeyUp: function(event) {
+		if (event.keyCode == KeyEvent.DOM_VK_RETURN && !this.addButton.disabled) {
+			this.addSite();
+		}
+	},
+
 	populateSiteList: function() {
 		var list = com.paraesthesia.ntlmauth.Preferences.loadSiteList();
 		com.paraesthesia.ntlmauth.EditDialog.Listbox.databind(this.siteListBox, list);
 	},
-
 
 	removeSite: function() {
 		com.paraesthesia.ntlmauth.EditDialog.Listbox.removeSelectedItem(this.siteListBox);
@@ -90,7 +99,6 @@ if (!com.paraesthesia.ntlmauth.EditDialog.DialogController) com.paraesthesia.ntl
 		this.populateSiteList();
 		this.updateRemoveButtonDisabled(this.siteListBox);
 	},
-
 
 	updateAddButtonDisabled: function(textbox) {
 		var url = textbox.value;
