@@ -1,48 +1,42 @@
-if(!com.paraesthesia.ntlmauth.EditDialog) com.paraesthesia.ntlmauth.EditDialog = {};
+/// <reference path="~/chrome/content/common.js" />
+if (!com) var com = {};
+if (!com.paraesthesia) com.paraesthesia = {};
+if (!com.paraesthesia.ntlmauth) com.paraesthesia.ntlmauth = {};
+if (!com.paraesthesia.ntlmauth.EditDialog) com.paraesthesia.ntlmauth.EditDialog = {};
 
-if(!com.paraesthesia.ntlmauth.EditDialog.Listbox) com.paraesthesia.ntlmauth.EditDialog.Listbox =
+if (!com.paraesthesia.ntlmauth.EditDialog.Listbox) com.paraesthesia.ntlmauth.EditDialog.Listbox =
 {
-	clear: function(lbox)
-	{
+	clear: function(lbox) {
 		var currentCount = lbox.itemCount;
-		for(var i = 0; i < currentCount; i++)
-		{
+		for (var i = 0; i < currentCount; i++) {
 			lbox.removeItemAt(0);
 		}
 	},
-	
-	contains: function(lbox, value)
-	{
-		for(var i = 0; i < lbox.itemCount; i++)
-		{
+
+	contains: function(lbox, value) {
+		for (var i = 0; i < lbox.itemCount; i++) {
 			var listItem = lbox.getItemAtIndex(i);
-			if(listItem.label.toLowerCase() == value.toLowerCase())
-			{
+			if (listItem.label.toLowerCase() == value.toLowerCase()) {
 				return true;
 			}
 		}
 		return false;
 	},
-	
-	databind: function(lbox, data)
-	{
+
+	databind: function(lbox, data) {
 		this.clear(lbox);
-		for(var i = 0; i < data.length; i++)
-		{
+		for (var i = 0; i < data.length; i++) {
 			lbox.appendItem(data[i]);
 		}
 	},
-	
-	removeSelectedItem: function(lbox)
-	{
+
+	removeSelectedItem: function(lbox) {
 		lbox.removeItemAt(lbox.getIndexOfItem(lbox.selectedItem));
 	},
-	
-	toArray: function(lbox)
-	{
+
+	toArray: function(lbox) {
 		var list = new Array(lbox.itemCount);
-		for(var i = 0; i < lbox.itemCount; i++)
-		{
+		for (var i = 0; i < lbox.itemCount; i++) {
 			var listItem = lbox.getItemAtIndex(i);
 			list[i] = listItem.label;
 		}
@@ -50,18 +44,16 @@ if(!com.paraesthesia.ntlmauth.EditDialog.Listbox) com.paraesthesia.ntlmauth.Edit
 	}
 };
 
-if(!com.paraesthesia.ntlmauth.EditDialog.DialogController) com.paraesthesia.ntlmauth.EditDialog.DialogController =
+if (!com.paraesthesia.ntlmauth.EditDialog.DialogController) com.paraesthesia.ntlmauth.EditDialog.DialogController =
 {
 	addButton: null,
 	addSiteTextBox: null,
 	removeButton: null,
 	siteListBox: null,
-	
-	addSite: function()
-	{
+
+	addSite: function() {
 		var url = this.addSiteTextBox.value;
-		if(!com.paraesthesia.ntlmauth.EditDialog.Listbox.contains(this.siteListBox, url))
-		{
+		if (!com.paraesthesia.ntlmauth.EditDialog.Listbox.contains(this.siteListBox, url)) {
 			var newSiteList = com.paraesthesia.ntlmauth.EditDialog.Listbox.toArray(this.siteListBox);
 			newSiteList[newSiteList.length] = url;
 			com.paraesthesia.ntlmauth.Preferences.saveSiteList(newSiteList);
@@ -71,28 +63,25 @@ if(!com.paraesthesia.ntlmauth.EditDialog.DialogController) com.paraesthesia.ntlm
 		this.updateAddButtonDisabled(this.addSiteTextBox);
 	},
 
-	initialize: function()
-	{
+	initialize: function() {
 		this.addButton = document.getElementById("addButton");
 		this.addSiteTextBox = document.getElementById("addSiteTextBox");
 		this.removeButton = document.getElementById("removeButton");
 		this.siteListBox = document.getElementById("siteListBox");
-		
+
 		this.populateSiteList();
 		// TODO: Put the current web site in the textbox IF it's not already in the list.
 		this.updateAddButtonDisabled(this.addSiteTextBox);
 
 	},
-	
-	populateSiteList: function()
-	{
+
+	populateSiteList: function() {
 		var list = com.paraesthesia.ntlmauth.Preferences.loadSiteList();
 		com.paraesthesia.ntlmauth.EditDialog.Listbox.databind(this.siteListBox, list);
 	},
-	
-		
-	removeSite: function()
-	{
+
+
+	removeSite: function() {
 		com.paraesthesia.ntlmauth.EditDialog.Listbox.removeSelectedItem(this.siteListBox);
 		var newSiteList = com.paraesthesia.ntlmauth.EditDialog.Listbox.toArray(this.siteListBox);
 		com.paraesthesia.ntlmauth.Preferences.saveSiteList(newSiteList);
@@ -102,14 +91,12 @@ if(!com.paraesthesia.ntlmauth.EditDialog.DialogController) com.paraesthesia.ntlm
 	},
 
 
-	updateAddButtonDisabled: function(textbox)
-	{
+	updateAddButtonDisabled: function(textbox) {
 		var url = textbox.value;
 		this.addButton.disabled = !com.paraesthesia.ntlmauth.String.isValidUrl(url);
 	},
-	
-	updateRemoveButtonDisabled: function(listbox)
-	{
+
+	updateFormFromSelection: function(listbox) {
 		this.removeButton.disabled = (this.siteListBox.selectedItem == null);
 	}
 };
