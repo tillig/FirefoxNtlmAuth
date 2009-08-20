@@ -1,0 +1,1 @@
+C:\Documents and Settings\tillig\My Documents\Visual Studio 2008\Projects\firefox-ntlmauth\mainline\trunk\extension
