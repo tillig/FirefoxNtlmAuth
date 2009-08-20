@@ -1,9 +1,10 @@
 <!ENTITY addbutton.accesskey "A">
 <!ENTITY addbutton.text "Add">
+<!ENTITY addsitehelplabel.text "<span style='font-style:italic;'>Enter a URL without wildcards (e.g. http://mysite/)</span>">
 <!ENTITY addsitelabel.text "Allow NTLM authentication on this site:">
 <!ENTITY closebutton.accesskey "C">
 <!ENTITY closebutton.text "Close">
-<!ENTITY instructions.text "You can add and remove sites from the list of NTLM-enabled sites. All web sites listed will use NTLM authentication if available.">
+<!ENTITY instructions.text "You can add and remove sites from the list that will use NTLM authentication if available. Any URL under a URL you list will automatically use NTLM auth.">
 <!ENTITY removebutton.accesskey "R">
 <!ENTITY removebutton.text "Remove">
 <!ENTITY sitelistlabel.text "NTLM-enabled sites:">

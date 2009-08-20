@@ -28,12 +28,16 @@
 				<textbox id="addSiteTextBox" maxlength="2048" flex="1" oninput="com.paraesthesia.ntlmauth.EditDialog.DialogController.updateAddButtonDisabled(this);"/>
 				<button id="addButton" label="&addbutton.text;" accesskey="&addbutton.accesskey;" command="cmd_addSite"/>
 			</hbox>
+			<label control="addSiteAddlHelp">&addsitehelplabel.text;</label>
 		</vbox>
 		<vbox id="siteList">
 			<label control="siteListBox">&sitelistlabel.text;</label>
 			<hbox>
 				<vbox flex="1">
-					<listbox id="siteListBox" rows="6" flex="1" onselect="com.paraesthesia.ntlmauth.EditDialog.DialogController.updateFormFromSelection(this);" />
+					<listbox id="siteListBox" rows="6" flex="1" onselect="com.paraesthesia.ntlmauth.EditDialog.DialogController.updateFormFromSelection(this);">
+						<!-- Empty list item here because the listbox changes size when an item gets added if it starts with no items. -->
+						<listitem label="" />
+					</listbox>
 				</vbox>
 				<vbox>
 					<button id="removeButton" label="&removebutton.text;" accesskey="&removebutton.accesskey;" disabled="true" command="cmd_removeSite"/>
