@@ -4,6 +4,7 @@
 		<MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\lib\MSBuildCommunityTasks</MSBuildCommunityTasksPath>
 		<BuildDirectory>$(MSBuildProjectDirectory)\build_output</BuildDirectory>
 		<ExtensionDirectory>$(MSBuildProjectDirectory)\extension</ExtensionDirectory>
+		<ExtensionName>firefox-ntlmauth</ExtensionName>
 	</PropertyGroup>
 	<Import Project="$(MSBuildProjectDirectory)\lib\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
 	<Target Name="All" DependsOnTargets="Clean;Compile">
@@ -16,6 +17,6 @@
 			<ExtensionFiles Include="$(ExtensionDirectory)\**\*.*" Exclude="$(ExtensionDirectory)\**\_svn\**\*.*" />
 		</ItemGroup>
 		<MakeDir Directories="$(BuildDirectory)" Condition="!Exists('$(BuildDirectory)')"/>
-		<Zip Files="@(ExtensionFiles)" WorkingDirectory="$(ExtensionDirectory)" ZipFileName="$(BuildDirectory)\firefox-ntlmauth.xpi" />
+		<Zip Files="@(ExtensionFiles)" WorkingDirectory="$(ExtensionDirectory)" ZipFileName="$(BuildDirectory)\$(ExtensionName).xpi" />
 	</Target>
 </Project>
