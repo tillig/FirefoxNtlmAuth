@@ -12,6 +12,7 @@
 		<command id="cmd_addSite" oncommand="com.paraesthesia.ntlmauth.EditDialog.DialogController.addSite()"/>
 		<command id="cmd_removeSite" oncommand="com.paraesthesia.ntlmauth.EditDialog.DialogController.removeSite()"/>
 		<command id="cmd_close" oncommand="window.close()"/>
+		<command id="cmd_help" oncommand="com.paraesthesia.ntlmauth.EditDialog.DialogController.help()"/>
 	</commandset>
 	<keyset>
 		<key id="esc" keycode="VK_ESCAPE" oncommand="window.close();" />
@@ -31,7 +32,7 @@
 				<textbox id="addSiteTextBox" maxlength="2048" flex="1" oninput="com.paraesthesia.ntlmauth.EditDialog.DialogController.onAddTextboxChanged(this);" onkeyup="com.paraesthesia.ntlmauth.EditDialog.DialogController.onAddTextboxKeyUp(event);"/>
 				<button id="addButton" label="&addbutton.text;" accesskey="&addbutton.accesskey;" command="cmd_addSite"/>
 			</hbox>
-			<label control="addSiteAddlHelp">&addsitehelplabel.text;</label>
+			<label>&addsiteexamplelabel.text;</label>
 		</vbox>
 		<vbox id="siteList">
 			<label control="siteListBox">&sitelistlabel.text;</label>
@@ -51,6 +52,7 @@
 		<hbox id="dialogButtons">
 			<spacer flex="1"/>
 			<button id="closeButton" label="&closebutton.text;" accesskey="&closebutton.accesskey;" command="cmd_close"/>
+			<button id="helpButton" label="&helpbutton.text;" accesskey="&helpbutton.accesskey;" command="cmd_help"/>
 		</hbox>
 	</vbox>
 </window>

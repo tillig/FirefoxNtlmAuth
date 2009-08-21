@@ -63,6 +63,10 @@ if (!com.paraesthesia.ntlmauth.EditDialog.DialogController) com.paraesthesia.ntl
 		this.updateAddButtonDisabled(this.addSiteTextBox);
 	},
 
+	help: function() {
+		window.open("http://code.google.com/p/firefox-ntlmauth/wiki/AddonHelp");
+	},
+
 	initialize: function() {
 		this.addButton = document.getElementById("addButton");
 		this.addSiteTextBox = document.getElementById("addSiteTextBox");
