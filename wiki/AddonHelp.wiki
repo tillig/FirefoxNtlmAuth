@@ -1,0 +1,20 @@
+#summary Explains how to use the add-on.
+#labels Featured,Phase-Deploy
+
+= Adding Sites =
+When adding a URL to the list of NTLM-enabled sites, it may at first appear to not be working. This is usually because the URL entered isn't actually the URL that is asking Firefox for your credentials. Here are some tips to help you get it working:
+
+  * *Don't use wildcards.* Wildcards (`*`) are actually valid characters in a URL. Instead, just put the site. For example, _http://mysite_ rather than _http://mysite/`*`_.
+  * *Remove the trailing slash.* It may be that the site asking for your credentials is identifying itself without a trailing slash - try removing it. For example, _http://mysite_ rather than _http://mysite/_.
+  * *Look at what the authorization box asks for.* Try logging into the site before adding it to the list of NTLM-enabled sites. The box that pops up ("Authentication Required") and asks for your username and password should have a line at the top that says "Enter username and password for <site URL>" and show you the URL to the site asking for credentials. That is what you should put in the list of NTLM-enabled sites.
+
+
+= Behind the Scenes =
+
+When you add a site to the list of NTLM-enabled sites it allows Firefox to start using Windows pass-through authentication on that site. It uses the [http://kb.mozillazine.org/Network.automatic-ntlm-auth.trusted-uris network.automatic-ntlm-auth.trusted-uris configuration key] already built into Firefox. As such, the URLs entered can't use wildcards or special formatting - they need to be what Firefox expects.
+
+If you need to manually manipulate the setting outside of the add-on, simply type "about:config" in the Firefox address bar and hit Enter. If you're shown a warning, click the button to let you through and view settings. In the "Filter" box that appears at the top of the list of settings, copy and paste this:
+
+network.automatic-ntlm-auth.trusted-uris
+
+You can then modify the list of authorized sites manually.
