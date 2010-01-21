@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="edit-dialog.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://ntlmauth/locale/edit-dialog.dtd">
+<window
+	title="&window.title;"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	onload="com.paraesthesia.ntlmauth.EditDialog.DialogController.initialize();">
+	<script type="application/x-javascript" src="chrome://ntlmauth/content/common.js"/>
+	<script type="application/x-javascript" src="chrome://ntlmauth/content/edit-dialog.js"/>
+	<commandset id="editDialogCommandSet">
+		<command id="cmd_addSite" oncommand="com.paraesthesia.ntlmauth.EditDialog.DialogController.addSite()"/>
+		<command id="cmd_removeSite" oncommand="com.paraesthesia.ntlmauth.EditDialog.DialogController.removeSite()"/>
+		<command id="cmd_close" oncommand="window.close()"/>
+		<command id="cmd_help" oncommand="com.paraesthesia.ntlmauth.EditDialog.DialogController.help()"/>
+	</commandset>
+	<keyset>
+		<key id="esc" keycode="VK_ESCAPE" oncommand="window.close();" />
+	</keyset>
+	<vbox>
+		<hbox id="instructions">
+			<vbox>
+				<image id="lock-icon" />
+			</vbox>
+			<vbox flex="1">
+				<description flex="1">&instructions.text;</description>
+			</vbox>
+		</hbox>
+		<vbox id="addSite">
+			<label control="addSiteTextBox">&addsitelabel.text;</label>
+			<hbox>
+				<textbox id="addSiteTextBox" maxlength="2048" flex="1" oninput="com.paraesthesia.ntlmauth.EditDialog.DialogController.onAddTextboxChanged(this);" onkeyup="com.paraesthesia.ntlmauth.EditDialog.DialogController.onAddTextboxKeyUp(event);"/>
+				<button id="addButton" label="&addbutton.text;" accesskey="&addbutton.accesskey;" command="cmd_addSite"/>
+			</hbox>
+			<label>&addsiteexamplelabel.text;</label>
+		</vbox>
+		<vbox id="siteList">
+			<label control="siteListBox">&sitelistlabel.text;</label>
+			<hbox>
+				<vbox flex="1">
+					<listbox id="siteListBox" rows="6" flex="1" onselect="com.paraesthesia.ntlmauth.EditDialog.DialogController.updateFormFromSelection(this);">
+						<!-- Empty list item here because the listbox changes size when an item gets added if it starts with no items. -->
+						<listitem label="" />
+					</listbox>
+				</vbox>
+				<vbox>
+					<button id="removeButton" label="&removebutton.text;" accesskey="&removebutton.accesskey;" disabled="true" command="cmd_removeSite"/>
+					<spacer flex="1"/>
+				</vbox>
+			</hbox>
+		</vbox>
+		<hbox id="dialogButtons">
+			<spacer flex="1"/>
+			<button id="closeButton" label="&closebutton.text;" accesskey="&closebutton.accesskey;" command="cmd_close"/>
+			<button id="helpButton" label="&helpbutton.text;" accesskey="&helpbutton.accesskey;" command="cmd_help"/>
+		</hbox>
+	</vbox>
+</window>
