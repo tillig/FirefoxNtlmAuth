@@ -19,3 +19,5 @@ If you need to manually manipulate the setting outside of the add-on, simply typ
 `network.automatic-ntlm-auth.trusted-uris`
 
 You can then modify the list of authorized sites manually.
+
+*IMPORTANT: This add-on does not actually DO the authentication.* Firefox itself already has built-in NTLM (Windows pass-through) authentication, it's just not obvious how to get it to work. This add-on makes it easy to configure Firefox to use its already-existing features, but _it does not do the authentication proper_.
