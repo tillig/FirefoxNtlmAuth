@@ -2,20 +2,6 @@ if (!com) var com = {};
 if (!com.paraesthesia) com.paraesthesia = {};
 if (!com.paraesthesia.ntlmauth) com.paraesthesia.ntlmauth = {};
 
-if (!com.paraesthesia.ntlmauth.Logger) com.paraesthesia.ntlmauth.Logger =
-{
-	logger: Components.classes['@mozilla.org/consoleservice;1'].getService(Components.interfaces.nsIConsoleService),
-	write: function(msg) {
-		this.logger.logStringMessage(msg);
-	},
-
-	dumpHierarchy: function(obj) {
-		for (var i in obj) {
-			this.write(i + " = " + obj[i]);
-		}
-	}
-};
-
 if (!com.paraesthesia.ntlmauth.String) com.paraesthesia.ntlmauth.String =
 {
 	getHostFromUrl: function(url) {
