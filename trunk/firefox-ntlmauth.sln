@@ -1,9 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "extension", "extension\", "{5AEA67C2-97C9-4BB4-B41E-D5FE2E274D4C}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFramework = "3.5"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/extension"
 		Debug.AspNetCompiler.PhysicalPath = "extension\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\extension\"
