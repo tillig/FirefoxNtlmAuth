@@ -41,11 +41,15 @@ if (!com.paraesthesia.ntlmauth.String) com.paraesthesia.ntlmauth.String =
 
 if (!com.paraesthesia.ntlmauth.Preferences) com.paraesthesia.ntlmauth.Preferences =
 {
-	preferenceKey: "network.automatic-ntlm-auth.trusted-uris",
+	delegationKey: "network.negotiate-auth.delegation-uris",
+	ntlmAuthKey: "network.automatic-ntlm-auth.trusted-uris",
+	trustedSiteKey: "network.negotiate-auth.trusted-uris",
 	preferenceService: Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService),
 
-	loadSiteList: function() {
-		var prefString = this.preferenceService.getCharPref(this.preferenceKey);
+	loadSiteList: function () {
+		// We assume all of the SPNEGO settings should be kept in sync.
+		// https://developer.mozilla.org/en/Integrated_Authentication
+		var prefString = this.preferenceService.getCharPref(this.ntlmAuthKey);
 		var trimmedArray = new Array();
 		if (prefString != null && prefString.length > 0) {
 			var prefArray = new Array();
@@ -61,8 +65,11 @@ if (!com.paraesthesia.ntlmauth.Preferences) com.paraesthesia.ntlmauth.Preference
 		return trimmedArray;
 	},
 
-	saveSiteList: function(siteList) {
+	saveSiteList: function (siteList) {
 		siteList.sort(com.paraesthesia.ntlmauth.String.urlSort);
-		this.preferenceService.setCharPref(this.preferenceKey, siteList.join());
+		var joinedList = siteList.join();
+		this.preferenceService.setCharPref(this.delegationKey, joinedList);
+		this.preferenceService.setCharPref(this.ntlmAuthKey, joinedList);
+		this.preferenceService.setCharPref(this.trustedSiteKey, joinedList);
 	}
 };
