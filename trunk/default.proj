@@ -14,7 +14,7 @@
 	</Target>
 	<Target Name="Compile">
 		<ItemGroup>
-			<ExtensionFiles Include="$(ExtensionDirectory)\**\*.*" Exclude="$(ExtensionDirectory)\**\_svn\**\*.*" />
+			<ExtensionFiles Include="$(ExtensionDirectory)\**\*.*" Exclude="$(ExtensionDirectory)\**\_svn\**\*.*;$(ExtensionDirectory)\**\.svn\**\*.*" />
 		</ItemGroup>
 		<MakeDir Directories="$(BuildDirectory)" Condition="!Exists('$(BuildDirectory)')"/>
 		<Zip Files="@(ExtensionFiles)" WorkingDirectory="$(ExtensionDirectory)" ZipFileName="$(BuildDirectory)\$(ExtensionName).xpi" />
