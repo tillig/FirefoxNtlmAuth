@@ -2,10 +2,13 @@
 #labels Featured,Phase-Deploy
 
 = Adding Sites =
-When adding a URL to the list of integrated-authentication-enabled sites, it may at first appear to not be working. This is usually because the URL entered isn't actually the URL that is asking Firefox for your credentials. Here are some tips to help you get it working:
+
+When adding a site to the list of integrated-authentication-enabled sites, it may at first appear to not be working. This is usually because the site entered isn't actually the site that is asking Firefox for your credentials. Here are some tips to help you get it working:
 
   * *Don't use wildcards.* Wildcards (`*`) are actually valid characters in a URL. Instead, just put the site. For example, _http://mysite_ rather than _http://mysite/`*`_.
   * *Remove the trailing slash.* It may be that the site asking for your credentials is identifying itself without a trailing slash - try removing it. For example, _http://mysite_ rather than _http://mysite/_.
+  * *Consider omitting the protocol.* If you have a site where you use both http and https, you can just specify the site name. For example, _www.mysite.com_.
+  * *Consider enabling non-FQDN pass-through*. If you're just trying to enable pass-through for sites on your local domain, click the checkbox at the bottom for enabling pass-through on all non-FQDN sites. That way, if you only specify the hostname (_sharepoint_) without the full domain (_sharepoint.mylocaldomain.com_) you'll get pass-through auth without having to list every single local site.
   * *Look at what the authorization box asks for.* Try logging into the site before adding it to the list of NTLM-enabled sites. The box that pops up ("Authentication Required") and asks for your username and password should have a line at the top that says "Enter username and password for <site URL>" and show you the URL to the site asking for credentials. That is what you should put in the list of NTLM-enabled sites.
 
 http://firefox-ntlmauth.googlecode.com/svn/site/wiki-images/authentication-dialog.png
@@ -26,5 +29,11 @@ network.automatic-ntlm-auth.trusted-uris
 }}}
 
 You can then modify the list of authorized sites manually.
+
+The automatic non-FQDN pass-through is handled by two keys introduced in Firefox 13:
+{{{
+network.negotiate-auth.allow-non-fqdn
+network.automatic-ntlm-auth.allow-non-fqdn
+}}}
 
 *IMPORTANT: This add-on does not actually DO the authentication.* Firefox itself already has built-in NTLM (Windows pass-through) and other integrated authentication, it's just not obvious how to get it to work. This add-on makes it easy to configure Firefox to use its already-existing features, but _it does not do the authentication proper_.
