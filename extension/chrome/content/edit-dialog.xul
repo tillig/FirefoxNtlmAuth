@@ -33,7 +33,7 @@
 				<textbox id="addSiteTextBox" maxlength="2048" flex="1" oninput="com.paraesthesia.ntlmauth.EditDialog.DialogController.onAddTextboxChanged(this);" onkeyup="com.paraesthesia.ntlmauth.EditDialog.DialogController.onAddTextboxKeyUp(event);"/>
 				<button id="addButton" label="&addbutton.text;" accesskey="&addbutton.accesskey;" command="cmd_addSite"/>
 			</hbox>
-			<label>&addsiteexamplelabel.text;</label>
+			<label id="addSiteExamples">&addsiteexamplelabel.text;</label>
 		</vbox>
 		<vbox id="siteList">
 			<label control="siteListBox">&sitelistlabel.text;</label>

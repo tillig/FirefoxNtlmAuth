@@ -13,8 +13,11 @@ if (!com.paraesthesia.ntlmauth.String) com.paraesthesia.ntlmauth.String =
 		return site;
 	},
 
-	isValidUrl: function(url) {
-		var urlPattern = /^(?:(?:ftp|https?):\/\/)[^\s]+$/;
+	isValidUrl: function (url) {
+		// We want to allow versions with or without protocol,
+		// just domains or domain suffixes, and non-FQDN server
+		// names... so we can't really "validate" so much.
+		var urlPattern = /^.+$/;
 		return urlPattern.test(url.toLowerCase());
 	},
 
