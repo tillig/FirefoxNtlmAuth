@@ -13,6 +13,7 @@
 		<command id="cmd_removeSite" oncommand="com.paraesthesia.ntlmauth.EditDialog.DialogController.removeSite()"/>
 		<command id="cmd_close" oncommand="window.close()"/>
 		<command id="cmd_help" oncommand="com.paraesthesia.ntlmauth.EditDialog.DialogController.help()"/>
+		<command id="cmd_togglenonfqdn" oncommand="com.paraesthesia.ntlmauth.EditDialog.DialogController.toggleNonFqdn()"/>
 	</commandset>
 	<keyset>
 		<key id="esc" keycode="VK_ESCAPE" oncommand="window.close();" />
@@ -48,6 +49,9 @@
 					<spacer flex="1"/>
 				</vbox>
 			</hbox>
+		</vbox>
+		<vbox id="enableNonFqdn">
+			<checkbox id="enableNonFqdnCheckbox" label="&enablenonfqdn.text;" command="cmd_togglenonfqdn" />
 		</vbox>
 		<hbox id="dialogButtons">
 			<spacer flex="1"/>

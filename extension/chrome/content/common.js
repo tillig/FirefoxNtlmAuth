@@ -44,6 +44,8 @@ if (!com.paraesthesia.ntlmauth.Preferences) com.paraesthesia.ntlmauth.Preference
 	delegationKey: "network.negotiate-auth.delegation-uris",
 	ntlmAuthKey: "network.automatic-ntlm-auth.trusted-uris",
 	trustedSiteKey: "network.negotiate-auth.trusted-uris",
+	enableNonFqdnNtlmKey: "network.automatic-ntlm-auth.allow-non-fqdn",
+	enableNonFqdnDelegationKey: "network.negotiate-auth.allow-non-fqdn",
 	preferenceService: Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService),
 
 	loadSiteList: function () {
@@ -71,5 +73,16 @@ if (!com.paraesthesia.ntlmauth.Preferences) com.paraesthesia.ntlmauth.Preference
 		this.preferenceService.setCharPref(this.delegationKey, joinedList);
 		this.preferenceService.setCharPref(this.ntlmAuthKey, joinedList);
 		this.preferenceService.setCharPref(this.trustedSiteKey, joinedList);
+	},
+
+	getNonFqdnEnabled: function () {
+		var key1 = this.preferenceService.getBoolPref(this.enableNonFqdnNtlmKey);
+		var key2 = this.preferenceService.getBoolPref(this.enableNonFqdnDelegationKey);
+		return key1 && key2;
+	},
+
+	setNonFqdnEnabled: function (pref) {
+		this.preferenceService.setBoolPref(this.enableNonFqdnNtlmKey, pref);
+		this.preferenceService.setBoolPref(this.enableNonFqdnDelegationKey, pref);
 	}
 };

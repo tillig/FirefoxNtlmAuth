@@ -48,10 +48,11 @@ if (!com.paraesthesia.ntlmauth.EditDialog.DialogController) com.paraesthesia.ntl
 {
 	addButton: null,
 	addSiteTextBox: null,
+	enableNonFqdnCheckbox: null,
 	removeButton: null,
 	siteListBox: null,
 
-	addSite: function() {
+	addSite: function () {
 		var url = this.addSiteTextBox.value;
 		if (!com.paraesthesia.ntlmauth.EditDialog.Listbox.contains(this.siteListBox, url)) {
 			var newSiteList = com.paraesthesia.ntlmauth.EditDialog.Listbox.toArray(this.siteListBox);
@@ -63,39 +64,42 @@ if (!com.paraesthesia.ntlmauth.EditDialog.DialogController) com.paraesthesia.ntl
 		this.updateAddButtonDisabled(this.addSiteTextBox);
 	},
 
-	help: function() {
+	help: function () {
 		window.open("http://code.google.com/p/firefox-ntlmauth/wiki/AddonHelp");
 	},
 
-	initialize: function() {
+	initialize: function () {
 		this.addButton = document.getElementById("addButton");
 		this.addSiteTextBox = document.getElementById("addSiteTextBox");
+		this.enableNonFqdnCheckbox = document.getElementById("enableNonFqdnCheckbox");
 		this.removeButton = document.getElementById("removeButton");
 		this.siteListBox = document.getElementById("siteListBox");
 
 		this.addSiteTextBox.focus();
 		this.populateSiteList();
+		// TODO: Get the pref for fqdn and populate.
+		this.enableNonFqdnCheckbox.checked = com.paraesthesia.ntlmauth.Preferences.getNonFqdnEnabled();
 		// TODO: Put the current web site in the textbox IF it's not already in the list.
 		this.updateAddButtonDisabled(this.addSiteTextBox);
 
 	},
 
-	onAddTextboxChanged: function(textbox) {
+	onAddTextboxChanged: function (textbox) {
 		this.updateAddButtonDisabled(textbox);
 	},
 
-	onAddTextboxKeyUp: function(event) {
+	onAddTextboxKeyUp: function (event) {
 		if (event.keyCode == KeyEvent.DOM_VK_RETURN && !this.addButton.disabled) {
 			this.addSite();
 		}
 	},
 
-	populateSiteList: function() {
+	populateSiteList: function () {
 		var list = com.paraesthesia.ntlmauth.Preferences.loadSiteList();
 		com.paraesthesia.ntlmauth.EditDialog.Listbox.databind(this.siteListBox, list);
 	},
 
-	removeSite: function() {
+	removeSite: function () {
 		com.paraesthesia.ntlmauth.EditDialog.Listbox.removeSelectedItem(this.siteListBox);
 		var newSiteList = com.paraesthesia.ntlmauth.EditDialog.Listbox.toArray(this.siteListBox);
 		com.paraesthesia.ntlmauth.Preferences.saveSiteList(newSiteList);
@@ -104,12 +108,16 @@ if (!com.paraesthesia.ntlmauth.EditDialog.DialogController) com.paraesthesia.ntl
 		this.updateRemoveButtonDisabled(this.siteListBox);
 	},
 
-	updateAddButtonDisabled: function(textbox) {
+	toggleNonFqdn: function () {
+		com.paraesthesia.ntlmauth.Preferences.setNonFqdnEnabled(this.enableNonFqdnCheckbox.checked);
+	},
+
+	updateAddButtonDisabled: function (textbox) {
 		var url = textbox.value;
 		this.addButton.disabled = !com.paraesthesia.ntlmauth.String.isValidUrl(url);
 	},
 
-	updateFormFromSelection: function(listbox) {
+	updateFormFromSelection: function (listbox) {
 		this.removeButton.disabled = (this.siteListBox.selectedItem == null);
 	}
 };
