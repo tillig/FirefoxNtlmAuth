@@ -16,7 +16,7 @@ if (!com.paraesthesia.ntlmauth.EditDialog.Listbox) com.paraesthesia.ntlmauth.Edi
 	contains: function(lbox, value) {
 		for (var i = 0; i < lbox.itemCount; i++) {
 			var listItem = lbox.getItemAtIndex(i);
-			if (listItem.label.toLowerCase() == value.toLowerCase()) {
+			if (listItem.label && listItem.label.toLowerCase() == value.toLowerCase()) {
 				return true;
 			}
 		}
@@ -105,7 +105,6 @@ if (!com.paraesthesia.ntlmauth.EditDialog.DialogController) com.paraesthesia.ntl
 		com.paraesthesia.ntlmauth.Preferences.saveSiteList(newSiteList);
 
 		this.populateSiteList();
-		this.updateRemoveButtonDisabled(this.siteListBox);
 	},
 
 	toggleNonFqdn: function () {
