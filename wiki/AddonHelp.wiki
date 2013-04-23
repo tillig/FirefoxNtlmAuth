@@ -5,14 +5,19 @@
 
 When adding a site to the list of integrated-authentication-enabled sites, it may at first appear to not be working. This is usually because the site entered isn't actually the site that is asking Firefox for your credentials. Here are some tips to help you get it working:
 
-  * *Don't use wildcards.* Wildcards (`*`) are actually valid characters in a URL. Instead, just put the site. For example, _http://mysite_ rather than _http://mysite/`*`_.
-  * *Remove the trailing slash.* It may be that the site asking for your credentials is identifying itself without a trailing slash - try removing it. For example, _http://mysite_ rather than _http://mysite/_.
-  * *Consider omitting the protocol.* If you have a site where you use both http and https, you can just specify the site name. For example, _www.mysite.com_.
-  * *Consider only listing the domain.* You can specify just a domain like _somedomain.org_ rather than listing every site in that domain. This helps in local intranet scenarios.
-  * *Consider enabling non-FQDN pass-through*. If you're just trying to enable pass-through for sites on your local domain, click the checkbox at the bottom for enabling pass-through on all non-FQDN sites. That way, if you only specify the hostname (_sharepoint_) without the full domain (_sharepoint.mylocaldomain.com_) you'll get pass-through auth without having to list every single local site.
+  * *Don't use wildcards.* Wildcards (`*`) are actually valid characters in a URL. Instead, just put the site. For example, `http://mysite` rather than `http://mysite/*`.
+  * *Remove the trailing slash.* It may be that the site asking for your credentials is identifying itself without a trailing slash - try removing it. For example, `http://mysite` rather than `http://mysite/`.
+  * *Consider omitting the protocol.* If you have a site where you use both http and https, you can just specify the site name. For example, `www.mysite.com`.
+  * *Consider only listing the domain.* You can specify just a domain like `somedomain.org` rather than listing every site in that domain. This helps in local intranet scenarios.
+  * *Consider enabling non-FQDN pass-through*. If you're just trying to enable pass-through for sites on your local domain, click the checkbox at the bottom for enabling pass-through on all non-FQDN sites. That way, if you only specify the hostname (`sharepoint`) without the full domain (`sharepoint.mylocaldomain.com`) you'll get pass-through auth without having to list every single local site.
   * *Look at what the authorization box asks for.* Try logging into the site before adding it to the list of NTLM-enabled sites. The box that pops up ("Authentication Required") and asks for your username and password should have a line at the top that says "Enter username and password for <site URL>" and show you the URL to the site asking for credentials. That is what you should put in the list of NTLM-enabled sites.
 
 http://firefox-ntlmauth.googlecode.com/svn/site/wiki-images/authentication-dialog.png
+
+= Enabling Pass-Through for All Local Sites =
+If you are on a local network (home, work) with a lot of sites where you might have them addressed by the non-fully-qualified-name (`http://mysite`) or the fully qualified name (`http://mysite.mydomain.local`) then you can get pass-through auth to work by doing these two steps:
+  * *Add your domain to the list.* Don't include a protocol or a server name. Using the example above, you'd add `mydomain.local` to the list.
+  * *Check the "Enable pass-through on all non-FQDN sites" box.* You'll see this at the bottom of the dialog.
 
 = Behind the Scenes =
 
