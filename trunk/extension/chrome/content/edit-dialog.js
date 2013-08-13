@@ -7,8 +7,9 @@ if (!com.paraesthesia.ntlmauth.EditDialog) com.paraesthesia.ntlmauth.EditDialog 
 if (!com.paraesthesia.ntlmauth.EditDialog.Listbox) com.paraesthesia.ntlmauth.EditDialog.Listbox =
 {
 	clear: function(lbox) {
-		var currentCount = lbox.itemCount;
-		for (var i = 0; i < currentCount; i++) {
+		lbox.clearSelection();
+		while(lbox.itemCount > 0)
+		{
 			lbox.removeItemAt(0);
 		}
 	},
@@ -16,7 +17,7 @@ if (!com.paraesthesia.ntlmauth.EditDialog.Listbox) com.paraesthesia.ntlmauth.Edi
 	contains: function(lbox, value) {
 		for (var i = 0; i < lbox.itemCount; i++) {
 			var listItem = lbox.getItemAtIndex(i);
-			if (listItem.label && listItem.label.toLowerCase() == value.toLowerCase()) {
+			if (listItem.label && (listItem.label.toLowerCase() == value.toLowerCase())) {
 				return true;
 			}
 		}
@@ -35,10 +36,10 @@ if (!com.paraesthesia.ntlmauth.EditDialog.Listbox) com.paraesthesia.ntlmauth.Edi
 	},
 
 	toArray: function(lbox) {
-		var list = new Array(lbox.itemCount);
+		var list = [];
 		for (var i = 0; i < lbox.itemCount; i++) {
 			var listItem = lbox.getItemAtIndex(i);
-			list[i] = listItem.label;
+			list.push(listItem.label);
 		}
 		return list;
 	}
@@ -56,16 +57,21 @@ if (!com.paraesthesia.ntlmauth.EditDialog.DialogController) com.paraesthesia.ntl
 		var url = this.addSiteTextBox.value;
 		if (!com.paraesthesia.ntlmauth.EditDialog.Listbox.contains(this.siteListBox, url)) {
 			var newSiteList = com.paraesthesia.ntlmauth.EditDialog.Listbox.toArray(this.siteListBox);
-			newSiteList[newSiteList.length] = url;
+			newSiteList.push(url);
 			com.paraesthesia.ntlmauth.Preferences.saveSiteList(newSiteList);
+
+			// Rather than re-loading the preferences, we assume the list box always contains
+			// the current set of preferences. We just need to sort the items and redisplay.
+			// Hopefully this avoids the save/load race condition some folks were seeing.
+			newSiteList.sort();
+			com.paraesthesia.ntlmauth.EditDialog.Listbox.databind(this.siteListBox, newSiteList);
 		}
-		this.populateSiteList();
 		this.addSiteTextBox.value = "";
 		this.updateAddButtonDisabled(this.addSiteTextBox);
 	},
 
 	help: function () {
-		window.open("http://code.google.com/p/firefox-ntlmauth/wiki/AddonHelp");
+		window.open("https://code.google.com/p/firefox-ntlmauth/wiki/AddonHelp");
 	},
 
 	initialize: function () {
@@ -103,8 +109,6 @@ if (!com.paraesthesia.ntlmauth.EditDialog.DialogController) com.paraesthesia.ntl
 		com.paraesthesia.ntlmauth.EditDialog.Listbox.removeSelectedItem(this.siteListBox);
 		var newSiteList = com.paraesthesia.ntlmauth.EditDialog.Listbox.toArray(this.siteListBox);
 		com.paraesthesia.ntlmauth.Preferences.saveSiteList(newSiteList);
-
-		this.populateSiteList();
 	},
 
 	toggleNonFqdn: function () {

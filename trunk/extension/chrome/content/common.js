@@ -4,41 +4,17 @@ if (!com.paraesthesia.ntlmauth) com.paraesthesia.ntlmauth = {};
 
 if (!com.paraesthesia.ntlmauth.String) com.paraesthesia.ntlmauth.String =
 {
-	getHostFromUrl: function(url) {
-		var index = url.indexOf("://");
-		if (index < 0) {
-			return url;
-		}
-		var site = url.substring(index + 3);
-		return site;
-	},
-
 	isValidUrl: function (url) {
 		// We want to allow versions with or without protocol,
 		// just domains or domain suffixes, and non-FQDN server
 		// names... so we can't really "validate" so much.
-		var urlPattern = /^.+$/;
-		return urlPattern.test(url.toLowerCase());
+		var urlPattern = /^[^\s]+$/;
+		return urlPattern.test(url);
 	},
 
 	trim: function(stringToTrim) {
-		var str = stringToTrim.replace(/^\s\s*/, '');
-		var ws = /\s/;
-		var i = str.length;
-		while (ws.test(str.charAt(--i)));
-		return str.slice(0, i + 1);
-	},
-
-	urlSort: function(a, b) {
-		var siteA = com.paraesthesia.ntlmauth.String.getHostFromUrl(a);
-		var siteB = com.paraesthesia.ntlmauth.String.getHostFromUrl(b);
-		if (siteA < siteB) {
-			return -1;
-		}
-		else if (siteA > siteB) {
-			return 1;
-		}
-		return 0;
+		var re = /^\s*(.+?)\s*$/;
+		return stringToTrim.replace(re, '$1');
 	}
 };
 
@@ -65,13 +41,13 @@ if (!com.paraesthesia.ntlmauth.Preferences) com.paraesthesia.ntlmauth.Preference
 					trimmedArray.push(url);
 				}
 			}
-			trimmedArray.sort(com.paraesthesia.ntlmauth.String.urlSort);
+			trimmedArray.sort();
 		}
 		return trimmedArray;
 	},
 
 	saveSiteList: function (siteList) {
-		siteList.sort(com.paraesthesia.ntlmauth.String.urlSort);
+		siteList.sort();
 		var joinedList = siteList.join();
 		this.preferenceService.setCharPref(this.delegationKey, joinedList);
 		this.preferenceService.setCharPref(this.ntlmAuthKey, joinedList);
