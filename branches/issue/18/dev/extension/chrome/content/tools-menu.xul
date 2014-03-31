@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay SYSTEM "chrome://ntlmauth/locale/tools-menu.dtd">
+<overlay id="ntlmauth-tools-menu" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script type="application/x-javascript" src="chrome://ntlmauth/content/common.js"/>
+	<script type="application/x-javascript" src="chrome://ntlmauth/content/tools-menu.js"/>
+	<commandset id="mainCommandSet">
+		<command id="cmd_showEditorDialog" oncommand="com.paraesthesia.ntlmauth.ToolsMenu.showEditorDialog()"/>
+	</commandset>
+	<menupopup id="menu_ToolsPopup">
+		<menuitem label="&tools-menu.text;" accesskey="&tools-menu.accesskey;" insertbefore="devToolsSeparator" command="cmd_showEditorDialog"/>
+	</menupopup>
+	<menupopup id="appmenu_customizeMenu">
+		<menuitem label="&tools-menu.text;" accesskey="&tools-menu.accesskey;" insertafter="appmenu_preferences" command="cmd_showEditorDialog"/>
+	</menupopup>
+</overlay>

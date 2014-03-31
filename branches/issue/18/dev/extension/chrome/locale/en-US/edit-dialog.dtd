@@ -1,0 +1,14 @@
+<!ENTITY addbutton.accesskey "A">
+<!ENTITY addbutton.text "Add">
+<!ENTITY addsiteexamplelabel.text "Enter a URL without wildcards (http://mysite.com); a domain (mydomain.com); or a non-FQDN site name without protocol (mysite).">
+<!ENTITY addsitelabel.text "Allow integrated authentication on this site:">
+<!ENTITY closebutton.accesskey "C">
+<!ENTITY closebutton.text "Close">
+<!ENTITY enablenonfqdn.text "Enable pass-through on all non-FQDN sites even if they aren't listed here">
+<!ENTITY helpbutton.accesskey "H">
+<!ENTITY helpbutton.text "Help">
+<!ENTITY instructions.text "You can add and remove sites from the list that will use NTLM/integrated authentication if available. Any URL under a URL you list will automatically use pass-through auth.">
+<!ENTITY removebutton.accesskey "R">
+<!ENTITY removebutton.text "Remove">
+<!ENTITY sitelistlabel.text "Integrated-auth-enabled sites:">
+<!ENTITY window.title "NTLM/Integrated Authentication">
