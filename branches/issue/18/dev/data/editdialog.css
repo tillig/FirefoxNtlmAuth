@@ -1,0 +1,16 @@
+.container-panel
+{
+	margin-bottom: 0;
+}
+
+.lock
+{
+	display: inline-block;
+	float: left;
+	margin: 5px;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background-image: url("lock.png");
+	width: 48px;
+	height: 48px;
+}
