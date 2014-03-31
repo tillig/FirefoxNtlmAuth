@@ -1,0 +1,41 @@
+window
+{
+	padding: 14px;
+	width: 378px;
+	height: 320px;
+}
+
+#addSite,
+#siteList
+{
+	margin-bottom: 10px;
+}
+
+#addSiteExamples
+{
+	width: 200px;
+	font-style: italic;
+}
+
+#dialogButtons
+{
+	margin-top: 30px;
+}
+
+#enableNonFqdnCheckbox
+{
+	width: 200px;
+}
+
+#instructions
+{
+	margin-bottom: 20px;
+	vertical-align: middle;
+}
+
+#lock-icon
+{
+	list-style-image: url("chrome://ntlmauth/content/lock.png");
+	width: 48px;
+	height: 48px;
+}
