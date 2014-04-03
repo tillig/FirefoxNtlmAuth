@@ -6,12 +6,22 @@
 	<link rel="stylesheet" type="text/css" href="editdialog.css" />
 </head>
 <body>
-	<div class="panel panel-primary container-panel">
-		<div class="panel-heading" data-l10n-id="editdialogtitle"></div>
-		<div class="panel-body">
-			<span class="lock"></span>
-			<p data-l10n-id="editdialoginstructions"></p>
-			<textarea rows="10" cols="20" id="edit-box"></textarea>
+	<div class="container">
+		<div class="panel panel-primary container-panel">
+			<div class="panel-heading" data-l10n-id="editdialogtitle"></div>
+			<div class="panel-body">
+				<span class="lock"></span>
+				<p data-l10n-id="editdialoginstructions"></p>
+				<form role="form">
+					<div class="form-group">
+						<label for="addSiteTextBox" data-l10n-id="editdialogaddsitelabel"></label>
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="http://your.site.here" name="addSiteTextBox" id="addSiteTextBox" />
+							<span class="input-group-btn"><button id="addButton" class="btn btn-default" data-l10n-id="editdialogaddbutton" /></span>
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 </body>

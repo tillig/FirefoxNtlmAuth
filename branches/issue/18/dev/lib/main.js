@@ -21,12 +21,12 @@ var menuitem = require("menuitems").Menuitem({
   "accesskey": _("toolsmenuaccesskey")
 });
 
-// DEMO STUFF...
 // Pass the "show" event to the dialog for initialization.
 editdialog.on("show", function() {
   editdialog.port.emit("show");
 });
 
+// DEMO STUFF...
 editdialog.port.on("text-entered", function (text) {
   console.log(text);
   editdialog.hide();
