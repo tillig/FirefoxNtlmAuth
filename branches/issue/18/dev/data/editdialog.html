@@ -12,6 +12,7 @@
 			<div class="panel-body">
 				<span class="lock"></span>
 				<p data-l10n-id="editdialoginstructions"></p>
+				<div class="clearfix"></div>
 				<form role="form">
 					<div class="form-group">
 						<label for="addSiteTextBox" data-l10n-id="editdialogaddsitelabel"></label>
@@ -19,6 +20,12 @@
 							<input type="text" class="form-control" placeholder="http://your.site.here" name="addSiteTextBox" id="addSiteTextBox" />
 							<span class="input-group-btn"><button id="addButton" class="btn btn-default" data-l10n-id="editdialogaddbutton" /></span>
 						</div>
+					</div>
+					<div class="form-group">
+						<label for="siteListBox" data-l10n-id="editdialogsitelistlabel"></label>
+						<select name="siteListBox" id="siteListBox" class="form-control" multiple="true" size="6">
+							<option>http://something.or.another</option>
+						</select>
 					</div>
 				</form>
 			</div>

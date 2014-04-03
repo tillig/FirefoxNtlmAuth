@@ -2,8 +2,8 @@ var data = require("sdk/self").data;
 var _ = require("sdk/l10n").get;
 
 var editdialog = require("sdk/panel").Panel({
-  width: 378,
-  height: 320,
+  width: 540,
+  height: 400,
   contentURL: data.url("editdialog.html"),
   contentScriptFile: [data.url("jquery-2.1.0.min.js"), data.url("bootstrap/js/bootstrap.min.js"), data.url("editdialog.js")]
 });
