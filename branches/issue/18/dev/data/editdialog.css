@@ -3,6 +3,11 @@
 	margin-bottom: 0;
 }
 
+.help
+{
+	cursor: pointer;
+}
+
 .lock
 {
 	display: inline-block;

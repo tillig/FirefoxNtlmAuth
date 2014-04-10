@@ -15,14 +15,11 @@
 				<div class="clearfix"></div>
 				<form role="form">
 					<div class="form-group">
-						<label for="addSiteTextBox" data-l10n-id="editdialogaddsitelabel"></label>
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="http://your.site.here" name="addSiteTextBox" id="addSiteTextBox" />
-							<span class="input-group-btn"><button id="addButton" class="btn btn-default" data-l10n-id="editdialogaddbutton" /></span>
-						</div>
+						<label for="addSiteTextBox" data-l10n-id="editdialogaddsitelabel"></label>&nbsp;<span id="addHelp" class="glyphicon glyphicon-info-sign help" data-toggle="popover" data-placement="auto top" data-trigger="hover"></span>
+						<input type="text" class="form-control" placeholder="http://your.site.here" name="addSiteTextBox" id="addSiteTextBox" />
 					</div>
 					<div class="form-group">
-						<label for="siteListBox" data-l10n-id="editdialogsitelistlabel"></label>
+						<label for="siteListBox" data-l10n-id="editdialogsitelistlabel"></label>&nbsp;<span id="listHelp" class="glyphicon glyphicon-info-sign help" data-toggle="popover" data-placement="auto top" data-trigger="hover"></span>
 						<select name="siteListBox" id="siteListBox" class="form-control" multiple="true" size="6">
 							<option>http://something.or.another</option>
 						</select>

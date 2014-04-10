@@ -23,7 +23,13 @@ var menuitem = require("menuitems").Menuitem({
 
 // Pass the "show" event to the dialog for initialization.
 editdialog.on("show", function() {
-  editdialog.port.emit("show");
+  var strings = {
+    editdialogaddhelpcontent: _("editdialogaddhelpcontent"),
+    editdialogaddhelptitle: _("editdialogaddhelptitle"),
+    editdialoglisthelpcontent: _("editdialoglisthelpcontent"),
+    editdialoglisthelptitle: _("editdialoglisthelptitle")
+  };
+  editdialog.port.emit("show", strings);
 });
 
 // DEMO STUFF...
