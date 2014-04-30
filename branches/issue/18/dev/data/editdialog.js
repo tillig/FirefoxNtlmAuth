@@ -4,8 +4,6 @@
 	var addSiteTextBox = document.getElementById("addSiteTextBox");
 	addSiteTextBox.addEventListener('keyup', function onkeyup(event) {
 		if (event.keyCode == 13) {
-			// TODO: Why is this only getting fired ONE TIME? The focus doesn't get set on the second entry. It isn't the jQuery wrapper or use strict.
-			// TODO: Why does pressing ENTER with a URL in the box result in a navigation attempt?
 			var text = addSiteTextBox.value.replace(/(\r\n|\n|\r)/gm, "");
 			addSiteTextBox.value = '';
 			addSiteTextBox.focus();
@@ -26,9 +24,24 @@
 		// Set focus so people can start typing URLs.
 		addSiteTextBox.value = data.activeurl;
 		addSiteTextBox.focus();
+
+		// Resize to fit the contents. There's an odd margin at the bottom I
+		// can't figure out and you can't debug panel HTML yet, so... compensate.
+		var dimensions = { "width": $(document).width(), "height": $(document).height() - 11 };
+		console.log(dimensions);
+		self.port.emit("resize-to-content", dimensions);
 	});
 
 	self.port.on("hide", function onHide() {
 		addSiteTextBox.value = '';
+	});
+
+	self.port.on("updatelist", function onUpdateList(siteList) {
+		console.log(siteList);
+		var $slb = $("#siteListBox");
+		$slb.empty();
+		$.each(siteList, function (index, value) {
+			$slb.append($("<option></option>").attr("value", value).text(value));
+		});
 	});
 }(jQuery));

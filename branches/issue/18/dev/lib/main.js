@@ -28,6 +28,7 @@ editdialog.on("show", function () {
 	if (tabs.activeTab.url.indexOf("about:") < 0) {
 		activeurl = tabs.activeTab.url;
 	}
+
 	var strings = {
 		activeurl: activeurl,
 		editdialogaddhelpcontent: _("editdialogaddhelpcontent"),
@@ -36,13 +37,23 @@ editdialog.on("show", function () {
 		editdialoglisthelptitle: _("editdialoglisthelptitle")
 	};
 	editdialog.port.emit("show", strings);
+
+	// TODO: Read the list of settings and update the list box.
+	//editdialog.port.emit("updatelist", ["http://one", "http://two"]);
 });
 
 editdialog.on("hide", function () {
 	editdialog.port.emit("hide");
 });
 
+editdialog.port.on("resize-to-content", function (dimensions) {
+	editdialog.resize(dimensions.width, dimensions.height);
+});
+
 editdialog.port.on("site-added", function (text) {
 	// TODO: Add the item to the list of prefs.
-	console.log(text);
+	// TODO: Re-sort and send in the list of sites.
+	editdialog.port.emit("updatelist", [text]);
 });
+
+// TODO: Handle someone selecting one or more items from the list and removing the items.
