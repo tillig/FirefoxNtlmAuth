@@ -25,10 +25,8 @@
 		addSiteTextBox.value = data.activeurl;
 		addSiteTextBox.focus();
 
-		// Resize to fit the contents. There's an odd margin at the bottom I
-		// can't figure out and you can't debug panel HTML yet, so... compensate.
-		var dimensions = { "width": $(document).width(), "height": $(document).height() - 11 };
-		console.log(dimensions);
+		// Resize to fit the contents.
+		var dimensions = { "width": $(document).width(), "height": $(document).height() };
 		self.port.emit("resize-to-content", dimensions);
 	});
 
@@ -37,7 +35,6 @@
 	});
 
 	self.port.on("updatelist", function onUpdateList(siteList) {
-		console.log(siteList);
 		var $slb = $("#siteListBox");
 		$slb.empty();
 		$.each(siteList, function (index, value) {
