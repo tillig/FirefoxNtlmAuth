@@ -20,7 +20,6 @@ var editdialog = require("sdk/panel").Panel({
 // TODO: Add some sort of other button... maybe in the Security tab?
 // TODO: Add the non-FQDN enabled checkbox.
 // TODO: Handle someone selecting one or more items from the list and removing the items.
-// TODO: Make better help text for the popups.
 
 var menuitem = require("menuitems").Menuitem({
 	id: "menu_ntlmauthToolsPopup",
@@ -32,6 +31,11 @@ var menuitem = require("menuitems").Menuitem({
 	insertbefore: "devToolsSeparator",
 	"accesskey": _("toolsmenuaccesskey")
 });
+
+// Maintain the current site list in memory because save/load
+// of prefs runs async.
+var currentSiteList = null;
+
 function trim(stringToTrim) {
 	if (stringToTrim === null)
 	{
@@ -62,6 +66,13 @@ function loadSiteList() {
 	return trimmedArray;
 }
 
+function saveSiteList (siteList) {
+	var joinedList = siteList.join();
+	prefs.set(prefKeys.delegation, joinedList);
+	prefs.set(prefKeys.ntlmAuth, joinedList);
+	prefs.set(prefKeys.trustedSite, joinedList);
+}
+
 // Pass the "show" event to the dialog for initialization.
 editdialog.on("show", function () {
 	var activeurl = "";
@@ -77,8 +88,10 @@ editdialog.on("show", function () {
 		editdialoglisthelptitle: _("editdialoglisthelptitle")
 	};
 
+	currentSiteList = loadSiteList();
+
 	editdialog.port.emit("show", strings);
-	editdialog.port.emit("updatelist", loadSiteList());
+	editdialog.port.emit("updatelist", currentSiteList);
 });
 
 editdialog.on("hide", function () {
@@ -95,7 +108,8 @@ editdialog.port.on("site-added", function (text) {
 		return;
 	}
 
-	// TODO: Add the item to the list of prefs.
-	// TODO: Re-sort and send in the list of sites. Don't re-load from prefs because pref saving runs async.
-	editdialog.port.emit("updatelist", [text]);
+	currentSiteList.push(text);
+	currentSiteList.sort();
+	saveSiteList(currentSiteList);
+	editdialog.port.emit("updatelist", currentSiteList);
 });

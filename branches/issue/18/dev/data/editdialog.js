@@ -3,7 +3,7 @@
 
 	var addSiteTextBox = document.getElementById("addSiteTextBox");
 	addSiteTextBox.addEventListener('keyup', function onkeyup(event) {
-		if (event.keyCode == 13) {
+		if (event.keyCode === 13) {
 			var text = addSiteTextBox.value.replace(/(\r\n|\n|\r)/gm, "");
 			addSiteTextBox.value = '';
 			addSiteTextBox.focus();
