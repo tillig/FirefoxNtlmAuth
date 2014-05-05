@@ -18,7 +18,6 @@ var editdialog = require("sdk/panel").Panel({
 });
 
 // TODO: Add some sort of other button... maybe in the Security tab?
-// TODO: Handle someone selecting one or more items from the list and removing the items.
 
 var menuitem = require("menuitems").Menuitem({
 	id: "menu_ntlmauthToolsPopup",
@@ -48,8 +47,8 @@ function getSiteList() {
 	// We assume all of the SPNEGO settings should be kept in sync.
 	// https://developer.mozilla.org/en/Integrated_Authentication
 	var prefString = prefs.get(prefKeys.ntlmAuth, ""),
-		prefArray = new Array(),
-		trimmedArray = new Array();
+		prefArray = [],
+		trimmedArray = [];
 
 	if (prefString !== null && prefString.length > 0) {
 		prefArray = prefString.split(",");
@@ -125,6 +124,27 @@ editdialog.port.on("site-added", function (text) {
 
 	currentSiteList.push(text);
 	currentSiteList.sort();
+	setSiteList(currentSiteList);
+	editdialog.port.emit("updatelist", currentSiteList);
+});
+
+editdialog.port.on("site-removed", function (removed) {
+	if (removed === null || removed.length === 0) {
+		return;
+	}
+
+	var r = 0,
+		indexToRemove = 0;
+
+	for (r = 0; r < removed.length; r++)
+	{
+		indexToRemove = currentSiteList.indexOf(removed[r]);
+		if (~indexToRemove)
+		{
+			currentSiteList.splice(indexToRemove, 1);
+		}
+	}
+
 	setSiteList(currentSiteList);
 	editdialog.port.emit("updatelist", currentSiteList);
 });

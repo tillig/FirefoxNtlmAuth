@@ -1,7 +1,10 @@
 (function($) {
 	"use strict";
 
-	var addSiteTextBox = document.getElementById("addSiteTextBox");
+	var addSiteTextBox = document.getElementById("addSiteTextBox"),
+		enableNonFqdnCheckbox = document.getElementById("enableNonFqdn"),
+		siteListBox = document.getElementById("siteListBox");
+
 	addSiteTextBox.addEventListener('keyup', function onkeyup(event) {
 		if (event.keyCode === 13) {
 			var text = addSiteTextBox.value.replace(/(\r\n|\n|\r)/gm, "");
@@ -11,10 +14,32 @@
 		}
 	}, false);
 
-	var enableNonFqdnCheckbox = document.getElementById("enableNonFqdn");
 	enableNonFqdnCheckbox.addEventListener('change', function onchange(event) {
 		self.port.emit("nonfqdn-change", enableNonFqdnCheckbox.checked);
 	}, false);
+
+	siteListBox.addEventListener('keyup', function onkeyup(event) {
+		if (event.keyCode === 46) {
+			var removed = [],
+				i = 0;
+
+			for (i = 0; i < siteListBox.length; i++)
+			{
+				if(siteListBox[i].selected)
+				{
+					removed.push(siteListBox[i].value);
+				}
+			}
+
+			self.port.emit("site-removed", removed);
+		}
+	}, false);
+
+	function resize()
+	{
+		var dimensions = { "width": $(document).width(), "height": $(document).height() };
+		self.port.emit("resize-to-content", dimensions);
+	}
 
 	self.port.on("show", function onShow(data) {
 		// Localize help text and enable popovers for help.
@@ -29,10 +54,7 @@
 		// Set focus so people can start typing URLs.
 		addSiteTextBox.value = data.activeurl;
 		addSiteTextBox.focus();
-
-		// Resize to fit the contents.
-		var dimensions = { "width": $(document).width(), "height": $(document).height() };
-		self.port.emit("resize-to-content", dimensions);
+		resize();
 	});
 
 	self.port.on("hide", function onHide() {
@@ -40,11 +62,12 @@
 	});
 
 	self.port.on("updatelist", function onUpdateList(siteList) {
-		var $slb = $("#siteListBox");
+		var $slb = $(siteListBox);
 		$slb.empty();
 		$.each(siteList, function (index, value) {
 			$slb.append($("<option></option>").attr("value", value).text(value));
 		});
+		resize();
 	});
 
 	self.port.on("updatenonfqdn", function onUpdateNonFqdn(enabled) {
