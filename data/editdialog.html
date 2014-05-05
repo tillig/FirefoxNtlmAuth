@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title data-l10n-id="editdialogtitle"></title>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="editdialog.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="panel panel-primary container-panel">
+            <div class="panel-heading" data-l10n-id="editdialogtitle"></div>
+            <div class="panel-body">
+                <span class="lock"></span>
+                <p data-l10n-id="editdialoginstructions"></p>
+                <div class="clearfix"></div>
+                <form role="form" onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="addSiteTextBox" data-l10n-id="editdialogaddsitelabel"></label>&nbsp;<span id="addHelp" class="glyphicon glyphicon-info-sign help" data-toggle="popover" data-placement="auto top" data-trigger="hover"></span>
+                        <input type="text" class="form-control" placeholder="http://your.site.here" name="addSiteTextBox" id="addSiteTextBox" />
+                    </div>
+                    <div class="form-group">
+                        <label for="siteListBox" data-l10n-id="editdialogsitelistlabel"></label>&nbsp;<span id="listHelp" class="glyphicon glyphicon-info-sign help" data-toggle="popover" data-placement="auto top" data-trigger="hover"></span>
+                        <select name="siteListBox" id="siteListBox" class="form-control" multiple size="10">
+                        </select>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="enableNonFqdn" id="enableNonFqdn" /> <span data-l10n-id="editdialognonfqdnlabel"></span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
