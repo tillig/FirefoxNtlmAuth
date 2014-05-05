@@ -18,7 +18,6 @@ var editdialog = require("sdk/panel").Panel({
 });
 
 // TODO: Add some sort of other button... maybe in the Security tab?
-// TODO: Add the non-FQDN enabled checkbox.
 // TODO: Handle someone selecting one or more items from the list and removing the items.
 
 var menuitem = require("menuitems").Menuitem({
@@ -45,7 +44,7 @@ function trim(stringToTrim) {
 	return stringToTrim.replace(/^\s*(.+?)\s*$/, '$1');
 }
 
-function loadSiteList() {
+function getSiteList() {
 	// We assume all of the SPNEGO settings should be kept in sync.
 	// https://developer.mozilla.org/en/Integrated_Authentication
 	var prefString = prefs.get(prefKeys.ntlmAuth, ""),
@@ -66,11 +65,22 @@ function loadSiteList() {
 	return trimmedArray;
 }
 
-function saveSiteList (siteList) {
+function setSiteList (siteList) {
 	var joinedList = siteList.join();
 	prefs.set(prefKeys.delegation, joinedList);
 	prefs.set(prefKeys.ntlmAuth, joinedList);
 	prefs.set(prefKeys.trustedSite, joinedList);
+}
+
+function getNonFqdnEnabled() {
+	var key1 = prefs.get(prefKeys.enableNonFqdnNtlm, false),
+		key2 = prefs.get(prefKeys.enableNonFqdnDelegation, false);
+	return key1 && key2;
+}
+
+function setNonFqdnEnabled(pref) {
+	prefs.set(prefKeys.enableNonFqdnNtlm, pref);
+	prefs.set(prefKeys.enableNonFqdnDelegation, pref);
 }
 
 // Pass the "show" event to the dialog for initialization.
@@ -88,14 +98,19 @@ editdialog.on("show", function () {
 		editdialoglisthelptitle: _("editdialoglisthelptitle")
 	};
 
-	currentSiteList = loadSiteList();
-
 	editdialog.port.emit("show", strings);
+
+	currentSiteList = getSiteList();
 	editdialog.port.emit("updatelist", currentSiteList);
+	editdialog.port.emit("updatenonfqdn", getNonFqdnEnabled());
 });
 
 editdialog.on("hide", function () {
 	editdialog.port.emit("hide");
+});
+
+editdialog.port.on("nonfqdn-change", function (enabled) {
+	setNonFqdnEnabled(enabled);
 });
 
 editdialog.port.on("resize-to-content", function (dimensions) {
@@ -110,6 +125,6 @@ editdialog.port.on("site-added", function (text) {
 
 	currentSiteList.push(text);
 	currentSiteList.sort();
-	saveSiteList(currentSiteList);
+	setSiteList(currentSiteList);
 	editdialog.port.emit("updatelist", currentSiteList);
 });

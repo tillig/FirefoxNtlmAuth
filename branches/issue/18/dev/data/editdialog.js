@@ -11,6 +11,11 @@
 		}
 	}, false);
 
+	var enableNonFqdnCheckbox = document.getElementById("enableNonFqdn");
+	enableNonFqdnCheckbox.addEventListener('change', function onchange(event) {
+		self.port.emit("nonfqdn-change", enableNonFqdnCheckbox.checked);
+	}, false);
+
 	self.port.on("show", function onShow(data) {
 		// Localize help text and enable popovers for help.
 		$("#addHelp")
@@ -40,5 +45,9 @@
 		$.each(siteList, function (index, value) {
 			$slb.append($("<option></option>").attr("value", value).text(value));
 		});
+	});
+
+	self.port.on("updatenonfqdn", function onUpdateNonFqdn(enabled) {
+		$("#enableNonFqdn").prop('checked', enabled);
 	});
 }(jQuery));
