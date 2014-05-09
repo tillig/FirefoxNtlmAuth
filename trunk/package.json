@@ -5,7 +5,7 @@
   "description": "An extension that helps with enabling and managing NTLM (Windows pass-through) and other SPNEGO (integrated authentication) settings.",
   "author": "Travis Illig",
   "license": "MPL 2.0",
-  "version": "3.0",
+  "version": "3.0.1",
   "homepage": "http://firefox-ntlmauth.googlecode.com/",
   "icon": "data/firefox-ntlmauth.png",
   "dependencies": ["menuitems", "addon-sdk"]
