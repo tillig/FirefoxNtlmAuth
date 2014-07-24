@@ -1,6 +1,9 @@
 #summary Explains how to use the add-on.
 #labels Featured,Phase-Deploy
 
+= Finding the Tools Menu =
+The new Firefox UI doesn't display the old File/Edit/Tools menu bar by default. Push the "Alt" key to make it show up.
+
 = Adding Sites =
 
 When adding a site to the list of integrated-authentication-enabled sites, it may at first appear to not be working. This is usually because the site entered isn't actually the site that is asking Firefox for your credentials. Here are some tips to help you get it working:
