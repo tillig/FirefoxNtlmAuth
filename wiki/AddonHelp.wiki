@@ -2,7 +2,7 @@
 #labels Featured,Phase-Deploy
 
 = Finding the Tools Menu =
-The new Firefox UI doesn't display the old File/Edit/Tools menu bar by default. Push the "Alt" key to make it show up.
+The new Firefox UI doesn't display the old File/Edit/Tools menu bar by default. Push the "Alt" key to make it show up. Alt+T will open the Tools menu directly.
 
 = Adding Sites =
 
