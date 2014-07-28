@@ -2,7 +2,7 @@
 #labels Featured,Phase-Deploy
 
 = Finding the Tools Menu =
-The new Firefox UI doesn't display the old File/Edit/Tools menu bar by default. Push the "Alt" key to make it show up. Alt+T will open the Tools menu directly.
+The new Firefox UI doesn't display the old File/Edit/Tools menu bar by default. Push the `Alt` key to make it show up. `Alt+T` will open the Tools menu directly.
 
 = Adding Sites =
 
@@ -46,3 +46,17 @@ network.automatic-ntlm-auth.allow-non-fqdn
 }}}
 
 *IMPORTANT: This add-on does not actually DO the authentication.* Firefox itself already has built-in NTLM (Windows pass-through) and other integrated authentication, it's just not obvious how to get it to work. This add-on makes it easy to configure Firefox to use its already-existing features, but _it does not do the authentication proper_.
+
+= If You Can't See The Menu... =
+
+If you are having trouble finding the menu from the add-on, here are some troubleshooting steps:
+
+  * Make sure you hit the `Alt` key to see the `Tools` menu, or hit `Alt + T` to open the `Tools` menu directly. You should see "Integrated Authentication Sites" in that menu.
+  * If you don't see "Integrated Authentication Sites" in the `Tools` menu, try uninstalling the add-on and then reinstalling it.
+  * If you still don't see it...
+    * [https://support.mozilla.org/en-US/kb/profile-manager-create-and-remove-firefox-profiles Create a new Firefox profile] just for testing that has no other add-ons or extensions installed. Install the add-on using that test profile and see if it shows up. If it does, it indicates there may be a problem with your Firefox profile.
+    * As a last resort, [https://support.mozilla.org/en-US/kb/reset-firefox-fix-most-problems try resetting Firefox, which fixes many problems]. You will have to reinstall your add-ons, but most other data is kept.
+
+I have had a few issue reports where people can't find the menu, but *I can't reproduce the issue*. I had one person who reported it solve the problem and *it was a problem with their local Firefox profile*.
+
+If you can't see the menu and you've followed all the troubleshooting steps, [https://code.google.com/p/firefox-ntlmauth/issues/list feel free to file an issue] but *please include steps to reproduce, details on your OS version, Firefox version, etc.* Again, I've as yet been unable to reproduce it, so these steps and additional information is really important.
