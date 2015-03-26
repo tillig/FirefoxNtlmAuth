@@ -6,6 +6,16 @@ The problem is that managing the list of sites you allow Firefox to pass-through
 
 This add-on makes it easier to manage this list, allowing you to stick with Firefox but still use integrated/pass-through authentication.
 
+## Installing the Extension
+
+You can install the extension through [the Firefox Add-On Gallery](https://addons.mozilla.org/en-US/firefox/addon/13816).
+
+## Using the Extension
+
+[The wiki has some extensive help docs explaining usage.](https://github.com/tillig/FirefoxNtlmAuth/wiki)
+
+**Note this extension does not actually DO the authentication.** It just allows easier configuration of settings already present in Firefox. If you're having actual authentication trouble or want a new type of authentication supported, you need to request those features from the Mozilla team.
+
 ## Building and Running the Extension
 
 The extension uses the Firefox Add-On SDK for build/execution. You can [get the SDK from the Mozilla site](https://developer.mozilla.org/en-US/Add-ons/SDK).
